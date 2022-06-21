@@ -46,11 +46,13 @@ namespace RecipeBook.Views
             BindingContext = this;
         }
 
-        private async void OnRecipeSelected(object sender, SelectionChangedEventArgs e)
+        private async void OnRecipeSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if (e.CurrentSelection == null) return;
-            Recipe selectedRecipe = (Recipe)e.CurrentSelection.FirstOrDefault();
+            CollectionView collectionView = (CollectionView)sender;
+            if (collectionView.SelectedItem == null) return;
+            Recipe selectedRecipe = (Recipe)collectionView.SelectedItem;
             await Shell.Current.GoToAsync($"{nameof(RecipePage)}?{nameof(RecipePage.CurrentRecipeFromString)}={selectedRecipe.AsString()}");
+            ((CollectionView)sender).SelectedItem = null;
         }
     }
 }
