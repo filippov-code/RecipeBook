@@ -1,0 +1,14 @@
+{
+  "version": 2,
+  "dgSpecHash": "9g1H7VNA4ygBwWJNBTVhDoR0A8eDp3HNYGp5w+1S7R8PRF+2I7t9x4zpmDXuDswE+EqqagbfoRh6fK1wLjZxog==",
+  "success": true,
+  "projectFilePath": "F:\\Programs\\Visual Studio Projects\\RecipeBook\\RecipeBook\\RecipeBook.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Admin\\.nuget\\packages\\microsoft.netcore.platforms\\1.1.0\\microsoft.netcore.platforms.1.1.0.nupkg.sha512",
+    "C:\\Users\\Admin\\.nuget\\packages\\netstandard.library\\2.0.3\\netstandard.library.2.0.3.nupkg.sha512",
+    "C:\\Users\\Admin\\.nuget\\packages\\system.numerics.vectors\\4.5.0\\system.numerics.vectors.4.5.0.nupkg.sha512",
+    "C:\\Users\\Admin\\.nuget\\packages\\xamarin.essentials\\1.7.0\\xamarin.essentials.1.7.0.nupkg.sha512",
+    "C:\\Users\\Admin\\.nuget\\packages\\xamarin.forms\\5.0.0.2196\\xamarin.forms.5.0.0.2196.nupkg.sha512"
+  ],
+  "logs": []
+}
