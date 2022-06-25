@@ -6,7 +6,8 @@
              BackgroundColor="LightYellow">
 
     <ContentPage.ToolbarItems>
-        <ToolbarItem Text="+" />
+        <ToolbarItem Text="ADD" 
+                     Clicked="OnAddRecipeButtonClicked"/>
     </ContentPage.ToolbarItems>
 
     <CollectionView ItemsSource="{Binding Recipes}" 

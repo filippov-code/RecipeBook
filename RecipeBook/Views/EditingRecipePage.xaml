@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="RecipeBook.Views.EditingRecipePage"
+             Title="Редактирование рецепта">
+    <ContentPage.Content>
+        <StackLayout>
+            <Entry Text="{Binding Title}" 
+                   x:Name="titleEntry"/>
+            <Entry Text="{Binding Description}"
+                   x:Name="descriptionEntry"/>
+            <Button Text="Сохранить"
+                    Clicked="OnSaveButtonClicked"/>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

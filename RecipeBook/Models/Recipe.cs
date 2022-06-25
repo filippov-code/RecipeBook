@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Collections.ObjectModel;
+using RecipeBook.Models;
 
 namespace RecipeBook
 {
@@ -14,9 +16,18 @@ namespace RecipeBook
 
         public string Description { get; set; }
 
-        public string AsString()
+        public ObservableCollection<Step> Steps { get; set; } = new ObservableCollection<Step>();
+
+
+        public Recipe() { }
+
+        public Recipe(Recipe recipeToCopy)
         {
-            return $"{ID},{Image},{Title},{Description}";
+            ID =  recipeToCopy.ID;
+            Image = recipeToCopy.Image;
+            Title = recipeToCopy.Title;
+            Description = recipeToCopy.Description;
+            Steps = recipeToCopy.Steps;
         }
     }
 }

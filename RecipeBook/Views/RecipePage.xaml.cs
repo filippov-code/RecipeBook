@@ -6,46 +6,34 @@ using System.Threading.Tasks;
 
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using RecipeBook.Data;
 
 namespace RecipeBook.Views
 {
-    [QueryProperty(nameof(CurrentRecipeFromString), nameof(CurrentRecipeFromString))]
+    [QueryProperty(nameof(SetRecipeByIdString), nameof(SetRecipeByIdString))]
     public partial class RecipePage : ContentPage
     {
-        private Recipe currentRecipe;
-        public Recipe CurrentRecipe 
+        public Recipe currentRecipe { get; set; }
+
+        public string SetRecipeByIdString
         {
-            get => currentRecipe;
             set
             {
-                currentRecipe = value;
+                Recipe recipe = DataStore.Source.GetRecipeById(int.Parse(value));
+                currentRecipe = new Recipe(recipe);
                 BindingContext = currentRecipe;
             }
         }
-
-        public string CurrentRecipeFromString
-        {
-            set => LoadRecipeFromString(value);
-        }
-
 
         public RecipePage()
         {
             InitializeComponent();
 
-            BindingContext = CurrentRecipe;
         }
 
-        private void LoadRecipeFromString(string data)
+        private async void OnEditButtonClicked(object sender, EventArgs e)
         {
-            string[] components = data.Split(',');
-            CurrentRecipe = new Recipe
-            {
-                ID = int.Parse(components[0]),
-                Image = components[1],
-                Title = components[2],
-                Description = components[3]
-            };
+            await Shell.Current.GoToAsync($"{nameof(EditingRecipePage)}?{nameof(EditingRecipePage.SetRecipeIdAsString)}={currentRecipe.ID}");
         }
 
     }
