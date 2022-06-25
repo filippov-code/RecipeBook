@@ -13,7 +13,7 @@ namespace RecipeBook.Views
     [QueryProperty(nameof(SetRecipeIdAsString), nameof(SetRecipeIdAsString))]
     public partial class EditingRecipePage : ContentPage
     {
-        public Recipe editingRecipe;
+        private Recipe editingRecipe;
 
         public string SetRecipeIdAsString
         {
@@ -36,29 +36,14 @@ namespace RecipeBook.Views
             if (editingRecipe == null)
             {
                 //добавляем новый рецепт
-                DataStore.Source.SaveOrUpdateRecipe(
-                    new Recipe
-                    {
-                        ID = 0,
-                        Image = "",
-                        Title = titleEntry.Text,
-                        Description = descriptionEntry.Text
-                    });
+                DataStore.Source.SaveOrUpdateRecipe(new Recipe(editingRecipe) { ID = 0 });
 
                 await Shell.Current.GoToAsync($"..");
             }
             else
             {
                 //обновляем существующий
-                DataStore.Source.SaveOrUpdateRecipe(
-                    new Recipe
-                    {
-                        ID = editingRecipe.ID,
-                        Image = editingRecipe.Image,
-                        Title = titleEntry.Text,
-                        Description = descriptionEntry.Text,
-                        Steps = editingRecipe.Steps
-                    });
+                DataStore.Source.SaveOrUpdateRecipe(new Recipe(editingRecipe));
 
                 await Shell.Current.GoToAsync($"..?{nameof(RecipePage.SetRecipeByIdString)}={editingRecipe.ID}");
             }

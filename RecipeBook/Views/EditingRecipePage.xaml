@@ -22,10 +22,8 @@
                     <StackLayout>
                         <Label Text="Редактирование рецепта"/>
                         <Image Source="{Binding Image}"/>
-                        <Entry Text="{Binding Title}"
-                               x:Name="titleEntry"/>
-                        <Entry Text="{Binding Description}"
-                               x:Name="descriptionEntry"/>
+                        <Entry Text="{Binding Title}"/>
+                        <Entry Text="{Binding Description}"/>
                     </StackLayout>
                 </CollectionView.Header>
 
@@ -35,7 +33,7 @@
                             <Image Source="{Binding Image}" 
                                    Aspect="AspectFill"
                                    HeightRequest="200"/>
-                            <Label Text="{Binding Description}" 
+                            <Entry Text="{Binding Description}" 
                                    FontSize="Medium"/>
                         </StackLayout>
                     </DataTemplate>

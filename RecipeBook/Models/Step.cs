@@ -11,5 +11,15 @@ namespace RecipeBook.Models
         public string Image { get; set; }
 
         public string Description { get; set; }
+
+
+        public Step() { }
+
+        public Step(Step stepToCopy)
+        {
+            ID = stepToCopy.ID;
+            Image = stepToCopy.Image;
+            Description = stepToCopy.Description;
+        }
     }
 }

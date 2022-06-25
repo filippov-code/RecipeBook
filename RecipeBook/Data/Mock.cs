@@ -26,7 +26,7 @@ namespace RecipeBook.Data
                         new Step
                         {
                             ID = 1,
-                            Image = "https://teslacraft.org/attachments/4925e58bb1825bbc2ef86a842aed4afe-jpg.257929/",
+                            Image = "https://free-png.ru/wp-content/uploads/2020/12/1-ba49575b.png",
                             Description = "1 step of first recipe"
                         },
                         new Step
@@ -48,7 +48,7 @@ namespace RecipeBook.Data
                         new Step
                         {
                             ID = 3,
-                            Image = "https://teslacraft.org/attachments/4925e58bb1825bbc2ef86a842aed4afe-jpg.257929/",
+                            Image = "https://free-png.ru/wp-content/uploads/2020/12/1-ba49575b.png",
                             Description = "1 step of second recipe"
                         },
                         new Step
@@ -76,7 +76,7 @@ namespace RecipeBook.Data
                         new Step
                         {
                             ID = 6,
-                            Image = "https://teslacraft.org/attachments/4925e58bb1825bbc2ef86a842aed4afe-jpg.257929/",
+                            Image = "https://free-png.ru/wp-content/uploads/2020/12/1-ba49575b.png",
                             Description = "1 step of third recipe"
                         },
                         new Step

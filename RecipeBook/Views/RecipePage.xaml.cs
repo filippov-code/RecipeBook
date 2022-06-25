@@ -13,7 +13,7 @@ namespace RecipeBook.Views
     [QueryProperty(nameof(SetRecipeByIdString), nameof(SetRecipeByIdString))]
     public partial class RecipePage : ContentPage
     {
-        public Recipe currentRecipe { get; set; }
+        private Recipe currentRecipe;
 
         public string SetRecipeByIdString
         {

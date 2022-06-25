@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Collections.ObjectModel;
 using RecipeBook.Models;
+using System.Linq;
 
 namespace RecipeBook
 {
@@ -27,7 +28,7 @@ namespace RecipeBook
             Image = recipeToCopy.Image;
             Title = recipeToCopy.Title;
             Description = recipeToCopy.Description;
-            Steps = recipeToCopy.Steps;
+            Steps = new ObservableCollection<Step>(recipeToCopy.Steps.Select(x => new Step(x)));
         }
     }
 }
