@@ -3,14 +3,45 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="RecipeBook.Views.EditingRecipePage"
              Title="Редактирование рецепта">
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="SAVE" Clicked="OnSaveButtonClicked"/>
+    </ContentPage.ToolbarItems>
+    
     <ContentPage.Content>
+
         <StackLayout>
-            <Entry Text="{Binding Title}" 
-                   x:Name="titleEntry"/>
-            <Entry Text="{Binding Description}"
-                   x:Name="descriptionEntry"/>
-            <Button Text="Сохранить"
-                    Clicked="OnSaveButtonClicked"/>
+            <CollectionView ItemsSource="{Binding Steps}">
+
+                <CollectionView.ItemsLayout>
+                    <LinearItemsLayout ItemSpacing="20" 
+                                       Orientation="Vertical"/>
+                </CollectionView.ItemsLayout>
+
+                <CollectionView.Header>
+                    <StackLayout>
+                        <Label Text="Редактирование рецепта"/>
+                        <Image Source="{Binding Image}"/>
+                        <Entry Text="{Binding Title}"
+                               x:Name="titleEntry"/>
+                        <Entry Text="{Binding Description}"
+                               x:Name="descriptionEntry"/>
+                    </StackLayout>
+                </CollectionView.Header>
+
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <StackLayout BackgroundColor="Orange">
+                            <Image Source="{Binding Image}" 
+                                   Aspect="AspectFill"
+                                   HeightRequest="200"/>
+                            <Label Text="{Binding Description}" 
+                                   FontSize="Medium"/>
+                        </StackLayout>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+
+            </CollectionView>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

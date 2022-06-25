@@ -56,7 +56,8 @@ namespace RecipeBook.Views
                         ID = editingRecipe.ID,
                         Image = editingRecipe.Image,
                         Title = titleEntry.Text,
-                        Description = descriptionEntry.Text
+                        Description = descriptionEntry.Text,
+                        Steps = editingRecipe.Steps
                     });
 
                 await Shell.Current.GoToAsync($"..?{nameof(RecipePage.SetRecipeByIdString)}={editingRecipe.ID}");
