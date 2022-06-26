@@ -22,6 +22,8 @@
                     <StackLayout>
                         <Label Text="Редактирование рецепта"/>
                         <Image Source="{Binding Image}"/>
+                        <Button Text="Сменить картинку"
+                                Clicked="OnChangeImageButtonClicked"/>
                         <Entry Text="{Binding Title}"/>
                         <Entry Text="{Binding Description}"/>
                     </StackLayout>

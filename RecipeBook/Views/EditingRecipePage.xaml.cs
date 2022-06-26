@@ -7,6 +7,9 @@ using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using RecipeBook.Data;
+using Xamarin.Essentials;
+using System.Diagnostics;
+using System.IO;
 
 namespace RecipeBook.Views
 {
@@ -46,6 +49,34 @@ namespace RecipeBook.Views
                 DataStore.Source.SaveOrUpdateRecipe(new Recipe(editingRecipe));
 
                 await Shell.Current.GoToAsync($"..?{nameof(RecipePage.SetRecipeByIdString)}={editingRecipe.ID}");
+            }
+        }
+
+
+        private async void OnChangeImageButtonClicked(object sender, EventArgs e)
+        {
+            var photo = await MediaPicker.PickPhotoAsync();
+            if (photo != null)
+            {
+                string filesFolderPath = Environment.GetFolderPath(Environment.SpecialFolder.Personal);
+                string imagesFolderPath = Path.Combine(filesFolderPath, "LoadedImages");
+                if (!Directory.Exists(imagesFolderPath))
+                {
+                    Directory.CreateDirectory(imagesFolderPath);
+                }
+                string imageName = $"recipe_{editingRecipe.ID}.png";
+                string imagePath = Path.Combine(imagesFolderPath, imageName);
+
+                using (var stream = await photo.OpenReadAsync())
+                using (var newStream = File.OpenWrite(imagePath))
+                    await stream.CopyToAsync(newStream);
+
+                editingRecipe.Image = imagePath;
+                Debug.WriteLine(imagePath);
+            }
+            else
+            {
+                await DisplayAlert("Ошибка", "Изображение не выбрано", "Ок");
             }
         }
     }

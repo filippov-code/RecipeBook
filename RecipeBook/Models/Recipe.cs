@@ -4,14 +4,26 @@ using System.Text;
 using System.Collections.ObjectModel;
 using RecipeBook.Models;
 using System.Linq;
+using System.ComponentModel;
 
 namespace RecipeBook
 {
-    public class Recipe
+    public class Recipe : INotifyPropertyChanged
     {
+        public event PropertyChangedEventHandler PropertyChanged;
+
         public int ID { get; set; }
 
-        public string Image { get; set; }
+        private string image;
+        public string Image 
+        {
+            get => image;
+            set
+            {
+                image = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Image"));
+            }
+        }
 
         public string Title { get; set; }
 
