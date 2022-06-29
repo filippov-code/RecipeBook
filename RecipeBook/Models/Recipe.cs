@@ -37,7 +37,13 @@ namespace RecipeBook
         public ObservableCollection<Step> Steps { get; set; } = new ObservableCollection<Step>();
 
 
-        public Recipe() { }
+        public Recipe() 
+        {
+            ID = 0;
+            Title = "Название";
+            Description = "Описание";
+            Steps = new ObservableCollection<Step>() { new Step() };
+        }
 
         public Recipe(Recipe recipeToCopy)
         {
@@ -47,5 +53,6 @@ namespace RecipeBook
             Description = recipeToCopy.Description;
             Steps = new ObservableCollection<Step>(recipeToCopy.Steps.Select(x => new Step(x)));
         }
+
     }
 }

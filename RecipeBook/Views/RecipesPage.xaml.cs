@@ -36,7 +36,7 @@ namespace RecipeBook.Views
 
         private async void OnAddRecipeButtonClicked(object sender, EventArgs e)
         {
-            await Shell.Current.GoToAsync($"{nameof(EditingRecipePage)}");
+            await Shell.Current.GoToAsync($"{nameof(EditingRecipePage)}?{nameof(EditingRecipePage.SetRecipeIdAsString)}=0");
         }
     }
 }

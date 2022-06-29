@@ -23,18 +23,20 @@
                         <Label Text="Страница рецепта"/>
                         <Image Source="{Binding ImageSource}"/>
                         <Label Text="{Binding Title}"/>
-                        <Label Text="{Binding Description}"/>
+                        <Editor Text="{Binding Description}"
+                                IsReadOnly="True"/>
                     </StackLayout>
                 </CollectionView.Header>
 
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
                         <StackLayout BackgroundColor="Orange">
-                            <Image Source="{Binding Image}" 
+                            <Image Source="{Binding ImageSource}" 
                                    Aspect="AspectFill"
                                    HeightRequest="200"/>
-                            <Label Text="{Binding Description}" 
-                                   FontSize="Medium"/>
+                            <Editor Text="{Binding Description}" 
+                                    FontSize="Medium"
+                                    IsReadOnly="True"/>
                         </StackLayout>
                     </DataTemplate>
                 </CollectionView.ItemTemplate>

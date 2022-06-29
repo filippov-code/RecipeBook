@@ -23,23 +23,30 @@
                         <Label Text="Редактирование рецепта"/>
                         <Image Source="{Binding ImageSource}"/>
                         <Button Text="Сменить картинку"
-                                Clicked="OnChangeImageButtonClicked"/>
+                                Clicked="OnChangeRecipeImageButtonClicked"/>
                         <Entry Text="{Binding Title}"/>
-                        <Entry Text="{Binding Description}"/>
+                        <Editor Text="{Binding Description}"
+                                IsReadOnly="True"/>
                     </StackLayout>
                 </CollectionView.Header>
 
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
                         <StackLayout BackgroundColor="Orange">
-                            <Image Source="{Binding Image}" 
+                            <Image Source="{Binding ImageSource}" 
                                    Aspect="AspectFill"
                                    HeightRequest="200"/>
-                            <Entry Text="{Binding Description}" 
-                                   FontSize="Medium"/>
+                            <Editor Text="{Binding Description}" 
+                                    FontSize="Medium"
+                                    AutoSize="TextChanges"/>
                         </StackLayout>
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
+
+                <CollectionView.Footer>
+                    <Button Text="Добавить шаг"
+                            Clicked="OnAddStepButtonClicked"/>
+                </CollectionView.Footer>
 
             </CollectionView>
         </StackLayout>

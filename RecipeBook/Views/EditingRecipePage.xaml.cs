@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using RecipeBook.Data;
+using RecipeBook.Models;
 using Xamarin.Essentials;
 using System.Diagnostics;
 using System.IO;
@@ -22,8 +23,8 @@ namespace RecipeBook.Views
         {
             set
             {
-                Recipe recipe = DataStore.Source.GetRecipeById(int.Parse(value));
-                editingRecipe = recipe == null ? null : new Recipe(recipe);
+                editingRecipe = DataStore.Source.GetRecipeById(int.Parse(value)) ?? new Recipe();
+                
                 BindingContext = editingRecipe;
             }
         }
@@ -39,21 +40,21 @@ namespace RecipeBook.Views
             if (editingRecipe == null)
             {
                 //добавляем новый рецепт
-                DataStore.Source.SaveOrUpdateRecipe(new Recipe(editingRecipe) { ID = 0 });
+                DataStore.Source.AddOrUpdateRecipe(new Recipe(editingRecipe) { ID = 0 });
 
                 await Shell.Current.GoToAsync($"..");
             }
             else
             {
                 //обновляем существующий
-                DataStore.Source.SaveOrUpdateRecipe(new Recipe(editingRecipe));
+                DataStore.Source.AddOrUpdateRecipe(new Recipe(editingRecipe));
 
                 await Shell.Current.GoToAsync($"..?{nameof(RecipePage.SetRecipeByIdString)}={editingRecipe.ID}");
             }
         }
 
 
-        private async void OnChangeImageButtonClicked(object sender, EventArgs e)
+        private async void OnChangeRecipeImageButtonClicked(object sender, EventArgs e)
         {
             var photo = await MediaPicker.PickPhotoAsync();
             if (photo != null)
@@ -64,6 +65,20 @@ namespace RecipeBook.Views
             {
                 await DisplayAlert("Ошибка", "Изображение не выбрано", "Ок");
             }
+        }
+
+        private async void OnEditStepButtonClicked(object sender, EventArgs e)
+        {
+            //var button = (Button)sender;
+        }
+
+        private async void OnAddStepButtonClicked(object sender, EventArgs e)
+        {
+            await Task.Run(() =>
+            {
+                editingRecipe.Steps.Add(new Step());
+                DataStore.Source.AddOrUpdateStepsFromRecipe(editingRecipe);
+            });
         }
     }
 }

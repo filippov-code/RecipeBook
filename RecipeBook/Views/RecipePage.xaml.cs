@@ -19,8 +19,7 @@ namespace RecipeBook.Views
         {
             set
             {
-                Recipe recipe = DataStore.Source.GetRecipeById(int.Parse(value));
-                currentRecipe = new Recipe(recipe);
+                currentRecipe = DataStore.Source.GetRecipeById(int.Parse(value));
                 BindingContext = currentRecipe;
             }
         }
