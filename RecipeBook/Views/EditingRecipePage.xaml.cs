@@ -58,21 +58,7 @@ namespace RecipeBook.Views
             var photo = await MediaPicker.PickPhotoAsync();
             if (photo != null)
             {
-                string filesFolderPath = Environment.GetFolderPath(Environment.SpecialFolder.Personal);
-                string imagesFolderPath = Path.Combine(filesFolderPath, "LoadedImages");
-                if (!Directory.Exists(imagesFolderPath))
-                {
-                    Directory.CreateDirectory(imagesFolderPath);
-                }
-                string imageName = $"recipe_{editingRecipe.ID}.png";
-                string imagePath = Path.Combine(imagesFolderPath, imageName);
-
-                using (var stream = await photo.OpenReadAsync())
-                using (var newStream = File.OpenWrite(imagePath))
-                    await stream.CopyToAsync(newStream);
-
-                editingRecipe.Image = imagePath;
-                Debug.WriteLine(imagePath);
+                editingRecipe.Image = photo.FullPath;
             }
             else
             {

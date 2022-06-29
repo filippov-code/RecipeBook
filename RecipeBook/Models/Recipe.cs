@@ -5,6 +5,8 @@ using System.Collections.ObjectModel;
 using RecipeBook.Models;
 using System.Linq;
 using System.ComponentModel;
+using Xamarin.Forms;
+using RecipeBook.Data;
 
 namespace RecipeBook
 {
@@ -21,9 +23,12 @@ namespace RecipeBook
             set
             {
                 image = value;
-                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Image"));
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Image)));
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(ImageSource)));
             }
         }
+
+        public ImageSource ImageSource => string.IsNullOrEmpty(image) ? ImageStorage.DefaultImage : image;
 
         public string Title { get; set; }
 

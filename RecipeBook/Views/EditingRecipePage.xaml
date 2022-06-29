@@ -21,7 +21,7 @@
                 <CollectionView.Header>
                     <StackLayout>
                         <Label Text="Редактирование рецепта"/>
-                        <Image Source="{Binding Image}"/>
+                        <Image Source="{Binding ImageSource}"/>
                         <Button Text="Сменить картинку"
                                 Clicked="OnChangeImageButtonClicked"/>
                         <Entry Text="{Binding Title}"/>

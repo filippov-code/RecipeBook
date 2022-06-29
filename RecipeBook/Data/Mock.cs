@@ -17,8 +17,8 @@ namespace RecipeBook.Data
             recipes = new ObservableCollection<Recipe>{
                 new Recipe
                 {
-                    ID = 1,
-                    Image = "/data/user/0/com.companyname.recipebook/files/LoadedImages/recipe_1.png",//"https://cs10.pikabu.ru/post_img/big/2018/08/18/7/1534590614195235309.png",
+                    ID = 4,
+                    Image = ImageStorage.GetImagePathForRecipe(4),//"/data/user/0/com.companyname.recipebook/files/LoadedImages/recipe_1.png",//"https://cs10.pikabu.ru/post_img/big/2018/08/18/7/1534590614195235309.png",
                     Title = "first recipe",
                     Description = "description of first recipe",
                     Steps =
@@ -121,6 +121,7 @@ namespace RecipeBook.Data
 
         public void SaveOrUpdateRecipe(Recipe recipe)
         {
+            ImageStorage.SaveImageForRecipe(recipe.ID, recipe.Image);
             if (recipe.ID == 0)
             {
                 //сохранить новый рецепт

@@ -2,7 +2,6 @@ F:\Programs\Visual Studio Projects\RecipeBook\RecipeBook\obj\Debug\netstandard2.
 F:\Programs\Visual Studio Projects\RecipeBook\RecipeBook\obj\Debug\netstandard2.0\RecipeBook.GeneratedMSBuildEditorConfig.editorconfig
 F:\Programs\Visual Studio Projects\RecipeBook\RecipeBook\obj\Debug\netstandard2.0\App.xaml.g.cs
 F:\Programs\Visual Studio Projects\RecipeBook\RecipeBook\obj\Debug\netstandard2.0\AppShell.xaml.g.cs
-F:\Programs\Visual Studio Projects\RecipeBook\RecipeBook\obj\Debug\netstandard2.0\MainPage.xaml.g.cs
 F:\Programs\Visual Studio Projects\RecipeBook\RecipeBook\obj\Debug\netstandard2.0\Views\RecipesPage.xaml.g.cs
 F:\Programs\Visual Studio Projects\RecipeBook\RecipeBook\obj\Debug\netstandard2.0\RecipeBook.AssemblyInfoInputs.cache
 F:\Programs\Visual Studio Projects\RecipeBook\RecipeBook\obj\Debug\netstandard2.0\RecipeBook.AssemblyInfo.cs
