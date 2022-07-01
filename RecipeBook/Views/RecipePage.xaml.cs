@@ -27,7 +27,6 @@ namespace RecipeBook.Views
         public RecipePage()
         {
             InitializeComponent();
-
         }
 
         private async void OnEditButtonClicked(object sender, EventArgs e)

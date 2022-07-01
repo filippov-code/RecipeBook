@@ -13,6 +13,8 @@ namespace RecipeBook.Data
         Recipe GetRecipeById(int id);
         Step GetStepById(int id);
         void AddOrUpdateRecipe(Recipe recipe);
-        void AddOrUpdateStepsFromRecipe(Recipe recipe);
+        //void AddOrUpdateStepsFromRecipe(Recipe recipe);
+        void DeleteRecipeById(int id);
+        //void DeleteStepFromRecipeById(int recipeId, int stepId);
     }
 }

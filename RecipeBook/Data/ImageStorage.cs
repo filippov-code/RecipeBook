@@ -35,6 +35,8 @@ namespace RecipeBook.Data
 
             string savedImagePath = Path.Combine(imagesFolderPath, imageName + imageFormat);
 
+            if (imagePath == savedImagePath) return;
+
             using (var readStream = File.OpenRead(imagePath))
             using (var writeStream = File.OpenWrite(savedImagePath))
                 await readStream.CopyToAsync(writeStream);
@@ -43,6 +45,17 @@ namespace RecipeBook.Data
         private static bool ImageExistByName(string imageName)
         {
             return File.Exists(Path.Combine(imagesFolderPath, imageName + imageFormat));
+        }
+
+        private static bool DeleteImageByName(string imageName)
+        {
+            string imageToDeletePath = Path.Combine(imagesFolderPath, imageName + imageFormat);
+
+            if (!File.Exists(imageToDeletePath)) return false;
+
+            File.Delete(imageToDeletePath);
+
+            return true;
         }
 
         private static string GetImagePathByName(string imageName)
@@ -61,11 +74,14 @@ namespace RecipeBook.Data
             return ImageExistByName(recipePrefix + recipeId);
         }
 
+        public static bool DeleteImageForRecipe(int recipeId)
+        {
+            return DeleteImageByName(recipePrefix + recipeId);
+        }
+
         public static string GetImagePathForRecipe(int recipeId)
         {
-            string imageName = recipePrefix + recipeId;
-
-            return GetImagePathByName(imageName);
+            return GetImagePathByName(recipePrefix + recipeId);
         }
 
         public static void SaveImageForStep(int stepId, string imagePath)
@@ -76,6 +92,11 @@ namespace RecipeBook.Data
         public static bool StepImageExist(int stepId)
         {
             return ImageExistByName(stepPrefix + stepId);
+        }
+
+        public static bool DeleteImageForStep(int stepID)
+        {
+            return DeleteImageByName(stepPrefix + stepID);
         }
 
         public static string GetImagePathForStep(int stepId)

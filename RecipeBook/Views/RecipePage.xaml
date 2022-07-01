@@ -4,7 +4,7 @@
              x:Class="RecipeBook.Views.RecipePage"
              Title="Детали рецепта"
              BackgroundColor="LightYellow">
-    
+
     <ContentPage.ToolbarItems>
         <ToolbarItem Clicked="OnEditButtonClicked"
                      Text="Edit"/>
@@ -34,9 +34,9 @@
                             <Image Source="{Binding ImageSource}" 
                                    Aspect="AspectFill"
                                    HeightRequest="200"/>
-                            <Editor Text="{Binding Description}" 
-                                    FontSize="Medium"
-                                    IsReadOnly="True"/>
+                            <Label Text="{Binding Description}" 
+                                   FontSize="Medium"
+                                   />
                         </StackLayout>
                     </DataTemplate>
                 </CollectionView.ItemTemplate>

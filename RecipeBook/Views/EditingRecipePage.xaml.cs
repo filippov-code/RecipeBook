@@ -24,6 +24,12 @@ namespace RecipeBook.Views
             set
             {
                 editingRecipe = DataStore.Source.GetRecipeById(int.Parse(value)) ?? new Recipe();
+
+                if (editingRecipe.ID == 0)
+                {
+                    Title = "Новый рецепт";
+                    ToolbarItems.RemoveAt(0);
+                }
                 
                 BindingContext = editingRecipe;
             }
@@ -32,25 +38,13 @@ namespace RecipeBook.Views
         public EditingRecipePage()
         {
             InitializeComponent();
-
         }
 
         private async void OnSaveButtonClicked(object sender, EventArgs e)
         {
-            if (editingRecipe == null)
-            {
-                //добавляем новый рецепт
-                DataStore.Source.AddOrUpdateRecipe(new Recipe(editingRecipe) { ID = 0 });
+            DataStore.Source.AddOrUpdateRecipe(new Recipe(editingRecipe));
 
-                await Shell.Current.GoToAsync($"..");
-            }
-            else
-            {
-                //обновляем существующий
-                DataStore.Source.AddOrUpdateRecipe(new Recipe(editingRecipe));
-
-                await Shell.Current.GoToAsync($"..?{nameof(RecipePage.SetRecipeByIdString)}={editingRecipe.ID}");
-            }
+            await Shell.Current.GoToAsync($"..?{nameof(RecipePage.SetRecipeByIdString)}={editingRecipe.ID}");
         }
 
 
@@ -63,13 +57,45 @@ namespace RecipeBook.Views
             }
             else
             {
-                await DisplayAlert("Ошибка", "Изображение не выбрано", "Ок");
+                await DisplayAlert("Упс", "Фото не выбрано", "Понятно");
             }
         }
 
-        private async void OnEditStepButtonClicked(object sender, EventArgs e)
+        private async void OnChangeStepImageButtonClicked(object sender, EventArgs e)
         {
-            //var button = (Button)sender;
+            var button = (Button)sender;
+            Step step = (Step)button.CommandParameter;
+
+            var photo = await MediaPicker.PickPhotoAsync();
+            if (photo != null)
+            {
+                step.Image = photo.FullPath;
+            }
+            else
+            {
+                await DisplayAlert("Упс", "Фото не выбрано", "Понятно");
+            }
+        }
+
+        private async void OnDeleteRecipeButtonClicked(object sender, EventArgs e)
+        {
+            bool accept = await DisplayAlert("Удаление", "Вы уверены?", "Удалить", "Отменить");
+            if (!accept) return;
+
+            DataStore.Source.DeleteRecipeById(editingRecipe.ID);
+
+            await Shell.Current.GoToAsync("../..");
+        }
+
+        private async void OnDeleteStepButtonClicked(object sender, EventArgs e)
+        {
+            bool accept = await DisplayAlert("Удаление", "Вы уверены?", "Удалить", "Отменить");
+            if (!accept) return;
+
+            var button = (Button)sender;
+            Step step = (Step)button.CommandParameter;
+            editingRecipe.Steps.Remove(step);
+            //DataStore.Source.DeleteStepFromRecipeById(editingRecipe.ID, step.ID);
         }
 
         private async void OnAddStepButtonClicked(object sender, EventArgs e)
@@ -77,7 +103,7 @@ namespace RecipeBook.Views
             await Task.Run(() =>
             {
                 editingRecipe.Steps.Add(new Step());
-                DataStore.Source.AddOrUpdateStepsFromRecipe(editingRecipe);
+                //DataStore.Source.AddOrUpdateStepsFromRecipe(editingRecipe);
             });
         }
     }

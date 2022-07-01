@@ -5,7 +5,10 @@
              Title="Редактирование рецепта">
 
     <ContentPage.ToolbarItems>
-        <ToolbarItem Text="SAVE" Clicked="OnSaveButtonClicked"/>
+        <ToolbarItem Text="DELETE" 
+                     Clicked="OnDeleteRecipeButtonClicked"/>
+        <ToolbarItem Text="SAVE" 
+                     Clicked="OnSaveButtonClicked"/>
     </ContentPage.ToolbarItems>
     
     <ContentPage.Content>
@@ -25,20 +28,26 @@
                         <Button Text="Сменить картинку"
                                 Clicked="OnChangeRecipeImageButtonClicked"/>
                         <Entry Text="{Binding Title}"/>
-                        <Editor Text="{Binding Description}"
-                                IsReadOnly="True"/>
+                        <Editor Text="{Binding Description}"/>
                     </StackLayout>
                 </CollectionView.Header>
 
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
                         <StackLayout BackgroundColor="Orange">
+                            <Label Text="{Binding ID}"/>
                             <Image Source="{Binding ImageSource}" 
                                    Aspect="AspectFill"
                                    HeightRequest="200"/>
+                            <Button Text="Сменить фото"
+                                    Clicked="OnChangeStepImageButtonClicked"
+                                    CommandParameter="{Binding .}"/>
                             <Editor Text="{Binding Description}" 
                                     FontSize="Medium"
                                     AutoSize="TextChanges"/>
+                            <Button Text="Удалить"
+                                    Clicked="OnDeleteStepButtonClicked"
+                                    CommandParameter="{Binding .}"/>
                         </StackLayout>
                     </DataTemplate>
                 </CollectionView.ItemTemplate>

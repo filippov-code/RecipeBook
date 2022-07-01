@@ -22,7 +22,7 @@
         <CollectionView.ItemTemplate>
             <DataTemplate>
                 <StackLayout BackgroundColor="Orange">
-                    <Image Source="{Binding ImageSource}" 
+                    <Image Source="{Binding ImageSource}"
                            Aspect="AspectFill"
                            HeightRequest="200"/>
                     <Label Text="{Binding Title}" FontSize="Large"/>

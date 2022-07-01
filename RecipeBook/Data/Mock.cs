@@ -79,19 +79,19 @@ namespace RecipeBook.Data
             ObservableCollection<Step> result = new ObservableCollection<Step>();
 
             string[] stepsAsString = recipesTable.FirstOrDefault(x => x[0] == recipeId.ToString());
-            if (stepsAsString == null) throw new ArgumentNullException("Рецепт с ID: {recipeId} не найден");
+            if (stepsAsString == null) throw new ArgumentNullException($"Рецепт с ID: {recipeId} не найден");
             string[] stepsIdAsStringArray = stepsAsString[4].Split(',');
             foreach (var stepIdAsString in stepsIdAsStringArray)
             {
                 int stepID;
                 if (!int.TryParse(stepIdAsString, out stepID)) continue;
-                Step step = GetStepById(stepID);
+                Step step = steps.FirstOrDefault(x => x.ID == stepID);
                 if (step == null)
                 {
                     Debug.WriteLine($"Нужна синхронизация с бд. Запрашиваемый ID шага не найден ({stepID})");
                     continue;
                 }
-                result.Add(GetStepById(stepID));
+                result.Add(step);
             }
             return result;
         }
@@ -114,39 +114,130 @@ namespace RecipeBook.Data
 
         public void AddOrUpdateRecipe(Recipe recipe)
         {
-            ImageStorage.SaveImageForRecipe(recipe.ID, recipe.Image);
+            recipe = new Recipe(recipe);
+
             AddOrUpdateStepsFromRecipe(recipe);
+
             if (recipe.ID == 0)
             {
-                //добавить новый рецепт
-                recipe.ID = recipes.LastOrDefault().ID + 1;
-                recipes.Add(recipe);
+                AddNewRecipe(recipe);
             }
             else
             {
-                //обновить рецепт
-                Recipe recipeForUpdate = recipes.First(x => x.ID == recipe.ID);
-                recipes[recipes.IndexOf(recipeForUpdate)] = recipe;
+                ReplaceRecipe(recipe);
             }
         }
 
-        public void AddOrUpdateStepsFromRecipe(Recipe recipe)
+        private void AddOrUpdateStepsFromRecipe(Recipe recipe)
         {
-            foreach (var step in recipe.Steps)
-            { 
-                if (step.ID == 0)
+            if (recipe.ID == 0)
+            {
+                foreach (var newStep in recipe.Steps)
                 {
-                    //добавляем новый шаг
-                    step.ID = steps.LastOrDefault().ID + 1;
-                    steps.Add(step);
+                    AddNewStep(newStep);
                 }
-                else
+                //AddNewRecipe(recipe);
+            }
+            else
+            {
+                Recipe originalRecipe = recipes.FirstOrDefault(x => x.ID == recipe.ID);
+                if (originalRecipe == null) throw new Exception("Редактируемый рецепт не найден в данных");
+                foreach (var oldStep in originalRecipe.Steps)
                 {
-                    //обновляем старый шаг
-                    Step stepForUpdate = steps.First(x => x.ID == step.ID);
-                    steps[steps.IndexOf(stepForUpdate)] = step;
+                    bool thisStepDeleted = recipe.Steps.FirstOrDefault(x => x.ID == oldStep.ID) == null;
+                    if (thisStepDeleted)
+                    {
+                        DeleteStep(oldStep);
+                    }
+                }
+                foreach (var newStep in recipe.Steps)
+                {
+                    if (newStep.ID == 0)
+                    {
+                        AddNewStep(newStep);
+                    }
+                    else
+                    {
+                        ReplaceStep(newStep);
+                    }
                 }
             }
+            
+        }
+
+        private int GetNextIdForRecipe()
+        {
+            Recipe lastRecipe = recipes.LastOrDefault();
+            return lastRecipe == null ? 1 : lastRecipe.ID + 1;
+        }
+
+        private int GetNextIdForStep()
+        {
+            Step lastStep = steps.LastOrDefault();
+            return lastStep == null ? 1 : lastStep.ID + 1;
+        }
+
+        private void AddNewRecipe(Recipe recipe)
+        {
+            recipe.ID = GetNextIdForRecipe();
+            recipes.Add(recipe);
+
+            ImageStorage.SaveImageForRecipe(recipe.ID, recipe.Image);
+        }
+
+        private void ReplaceRecipe(Recipe recipe)
+        {
+            Recipe recipeForUpdate = recipes.FirstOrDefault(x => x.ID == recipe.ID);
+            if (recipeForUpdate == null) throw new Exception("Заменяемый рецепт не найден");
+            recipes[recipes.IndexOf(recipeForUpdate)] = recipe;
+
+            ImageStorage.SaveImageForRecipe(recipe.ID, recipe.Image);
+        }
+
+        public void DeleteRecipeById(int id)
+        {
+            Recipe recipeToDelete = recipes.FirstOrDefault(x => x.ID == id);
+            if (recipeToDelete == null) throw new Exception("Попытка удалить несуществующий рецепт");
+
+            foreach (var stepToDelete in recipeToDelete.Steps)
+            {
+                Step originalStep = steps.FirstOrDefault(x => x.ID == stepToDelete.ID);
+                if (originalStep == null) throw new Exception("Попытка удалить несуществующий шаг");
+                DeleteStep(originalStep);
+            }
+            recipes.Remove(recipeToDelete);
+
+            ImageStorage.DeleteImageForRecipe(recipeToDelete.ID);
+        }
+
+        private void AddNewStep(Step step)
+        {
+            if (step.ID != 0) throw new Exception("В новом рецепте есть не новые шаги");
+
+            step.ID = GetNextIdForStep();
+            steps.Add(step);
+
+            ImageStorage.SaveImageForStep(step.ID, step.Image);
+        }
+
+        private void ReplaceStep(Step step)
+        {
+            Step originalStep = steps.FirstOrDefault(x => x.ID == step.ID);
+            if (originalStep == null) throw new Exception("Заменяемый шаг не найден в данных");
+            int index = steps.IndexOf(originalStep);
+            steps[index] = step;
+
+            ImageStorage.SaveImageForStep(step.ID, step.Image);
+        }
+
+        private void DeleteStep(Step step)
+        {
+            Step stepToDelete = steps.FirstOrDefault(x => x.ID == step.ID);
+            if (stepToDelete == null) throw new Exception("Попытка удалить несуществующий шаг");
+
+            steps.Remove(stepToDelete);
+
+            ImageStorage.DeleteImageForRecipe(stepToDelete.ID);
         }
     }
 }
