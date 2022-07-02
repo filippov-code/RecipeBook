@@ -16,19 +16,32 @@ namespace RecipeBook
 
         public int ID { get; set; }
 
-        private string image;
-        public string Image 
+        private string loadedImagePath;
+        public string LoadedImagePath 
         {
-            get => image;
+            get => loadedImagePath;
             set
             {
-                image = value;
-                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Image)));
+                loadedImagePath = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(LoadedImagePath)));
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(ImageSource)));
             }
         }
 
-        public ImageSource ImageSource => string.IsNullOrEmpty(image) ? ImageStorage.DefaultImage : image;
+        public ImageSource ImageSource
+        {
+            get
+            {
+                if (!string.IsNullOrEmpty(loadedImagePath)) 
+                    return loadedImagePath;
+
+                string savedImagePath = ImageStorage.GetImagePathForRecipe(ID);
+                if (string.IsNullOrEmpty(savedImagePath)) 
+                    return ImageStorage.DefaultImage;
+                else 
+                    return savedImagePath;
+            }
+        }
 
         public string Title { get; set; }
 
@@ -48,7 +61,7 @@ namespace RecipeBook
         public Recipe(Recipe recipeToCopy)
         {
             ID =  recipeToCopy.ID;
-            Image = recipeToCopy.Image;
+            LoadedImagePath = recipeToCopy.LoadedImagePath;
             Title = recipeToCopy.Title;
             Description = recipeToCopy.Description;
             Steps = new ObservableCollection<Step>(recipeToCopy.Steps.Select(x => new Step(x)));

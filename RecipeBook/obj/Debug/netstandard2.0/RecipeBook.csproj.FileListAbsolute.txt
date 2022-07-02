@@ -16,4 +16,3 @@ F:\Programs\Visual Studio Projects\RecipeBook\RecipeBook\obj\Debug\netstandard2.
 F:\Programs\Visual Studio Projects\RecipeBook\RecipeBook\obj\Debug\netstandard2.0\ref\RecipeBook.dll
 F:\Programs\Visual Studio Projects\RecipeBook\RecipeBook\obj\Debug\netstandard2.0\Views\RecipePage.xaml.g.cs
 F:\Programs\Visual Studio Projects\RecipeBook\RecipeBook\obj\Debug\netstandard2.0\Views\EditingRecipePage.xaml.g.cs
-F:\Programs\Visual Studio Projects\RecipeBook\RecipeBook\obj\Debug\netstandard2.0\Views\EditingStepPage.xaml.g.cs

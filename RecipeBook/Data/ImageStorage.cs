@@ -27,11 +27,18 @@ namespace RecipeBook.Data
             {
                 Directory.CreateDirectory(imagesFolderPath);
             }
+
+            /*
+            var images = Directory.GetFiles(imagesFolderPath);
+            foreach (var imagePath in images)
+                File.Delete(imagePath);
+            */
         }
 
         private async static void SaveImageByNameAsync(string imageName, string imagePath)
         {
-            if (!File.Exists(imagePath)) return;
+
+            if (!File.Exists(imagePath)) throw new Exception("Путь изображения для сохранения не найден");
 
             string savedImagePath = Path.Combine(imagesFolderPath, imageName + imageFormat);
 
@@ -60,12 +67,17 @@ namespace RecipeBook.Data
 
         private static string GetImagePathByName(string imageName)
         {
-            if (ImageExistByName(imageName)) return Path.Combine(imagesFolderPath, imageName + imageFormat);
-            else return "";
+            if (ImageExistByName(imageName)) 
+                return Path.Combine(imagesFolderPath, imageName + imageFormat);
+            else 
+                return "";
         }
 
         public static void SaveImageForRecipe(int recipeId, string imagePath)
         {
+            if (recipeId == 0) 
+                throw new Exception("Попытка сохранения изобажения для рецепта по умолчанию");
+
             SaveImageByNameAsync(recipePrefix + recipeId, imagePath);
         }
 
@@ -86,6 +98,9 @@ namespace RecipeBook.Data
 
         public static void SaveImageForStep(int stepId, string imagePath)
         {
+            if (stepId == 0) 
+                throw new Exception("Попытка сохранения изображения для шага по умолчанию");
+
             SaveImageByNameAsync(stepPrefix + stepId, imagePath);
         }
 
@@ -101,9 +116,7 @@ namespace RecipeBook.Data
 
         public static string GetImagePathForStep(int stepId)
         {
-            string imageName = stepPrefix + stepId;
-
-            return GetImagePathByName(imageName);
+            return GetImagePathByName(stepPrefix + stepId);
         }
     }
 }

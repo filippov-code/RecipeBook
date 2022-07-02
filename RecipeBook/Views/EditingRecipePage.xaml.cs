@@ -42,7 +42,7 @@ namespace RecipeBook.Views
 
         private async void OnSaveButtonClicked(object sender, EventArgs e)
         {
-            DataStore.Source.AddOrUpdateRecipe(new Recipe(editingRecipe));
+            DataStore.Source.AddOrUpdateRecipe(editingRecipe);
 
             await Shell.Current.GoToAsync($"..?{nameof(RecipePage.SetRecipeByIdString)}={editingRecipe.ID}");
         }
@@ -53,7 +53,7 @@ namespace RecipeBook.Views
             var photo = await MediaPicker.PickPhotoAsync();
             if (photo != null)
             {
-                editingRecipe.Image = photo.FullPath;
+                editingRecipe.LoadedImagePath = photo.FullPath;
             }
             else
             {

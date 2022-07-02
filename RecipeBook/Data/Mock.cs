@@ -15,9 +15,9 @@ namespace RecipeBook.Data
 
         private string[][] recipesTable = new string[][]
         {
-            new string[] {"1", "recipe_1", "first recipe", "description of first recipe", "1,2" },
-            new string[] {"2", "", "second recipe", "description of second recipe", "3,4,5" },
-            new string[] {"3", "", "third recipe", "deescription of third recipe", "6,7,8,9" }
+            new string[] {"1", "first recipe", "description of first recipe", "1,2" },
+            new string[] {"2", "second recipe", "description of second recipe", "3,4,5" },
+            new string[] {"3", "third recipe", "deescription of third recipe", "6,7,8,9" }
         };
 
         private string[][] stepsTable = new string[][]
@@ -60,9 +60,8 @@ namespace RecipeBook.Data
                 Recipe recipe = new Recipe
                 {
                     ID = recipeID,
-                    Image = ImageStorage.GetImagePathForRecipe(recipeID),
-                    Title = recipeArray[2],
-                    Description = recipeArray[3],
+                    Title = recipeArray[1],
+                    Description = recipeArray[2],
                     Steps = GetStepsById(recipeID)
                 };
                 recipes.Add(recipe);
@@ -78,9 +77,9 @@ namespace RecipeBook.Data
         {
             ObservableCollection<Step> result = new ObservableCollection<Step>();
 
-            string[] stepsAsString = recipesTable.FirstOrDefault(x => x[0] == recipeId.ToString());
-            if (stepsAsString == null) throw new ArgumentNullException($"Рецепт с ID: {recipeId} не найден");
-            string[] stepsIdAsStringArray = stepsAsString[4].Split(',');
+            string[] stepAsString = recipesTable.FirstOrDefault(x => x[0] == recipeId.ToString());
+            if (stepAsString == null) throw new ArgumentNullException($"Рецепт с ID: {recipeId} не найден");
+            string[] stepsIdAsStringArray = stepAsString[3].Split(',');
             foreach (var stepIdAsString in stepsIdAsStringArray)
             {
                 int stepID;
@@ -136,7 +135,6 @@ namespace RecipeBook.Data
                 {
                     AddNewStep(newStep);
                 }
-                //AddNewRecipe(recipe);
             }
             else
             {
@@ -182,7 +180,10 @@ namespace RecipeBook.Data
             recipe.ID = GetNextIdForRecipe();
             recipes.Add(recipe);
 
-            ImageStorage.SaveImageForRecipe(recipe.ID, recipe.Image);
+            if (!string.IsNullOrEmpty(recipe.LoadedImagePath)) 
+                ImageStorage.SaveImageForRecipe(recipe.ID, recipe.LoadedImagePath);
+
+            recipe.LoadedImagePath = "";
         }
 
         private void ReplaceRecipe(Recipe recipe)
@@ -191,7 +192,10 @@ namespace RecipeBook.Data
             if (recipeForUpdate == null) throw new Exception("Заменяемый рецепт не найден");
             recipes[recipes.IndexOf(recipeForUpdate)] = recipe;
 
-            ImageStorage.SaveImageForRecipe(recipe.ID, recipe.Image);
+            if (!string.IsNullOrEmpty(recipe.LoadedImagePath))
+                ImageStorage.SaveImageForRecipe(recipe.ID, recipe.LoadedImagePath);
+
+            recipe.LoadedImagePath = "";
         }
 
         public void DeleteRecipeById(int id)
@@ -217,7 +221,8 @@ namespace RecipeBook.Data
             step.ID = GetNextIdForStep();
             steps.Add(step);
 
-            ImageStorage.SaveImageForStep(step.ID, step.Image);
+            if (!string.IsNullOrEmpty(step.Image))
+                ImageStorage.SaveImageForStep(step.ID, step.Image);
         }
 
         private void ReplaceStep(Step step)
@@ -227,7 +232,8 @@ namespace RecipeBook.Data
             int index = steps.IndexOf(originalStep);
             steps[index] = step;
 
-            ImageStorage.SaveImageForStep(step.ID, step.Image);
+            if (!string.IsNullOrEmpty(step.Image))
+                ImageStorage.SaveImageForStep(step.ID, step.Image);
         }
 
         private void DeleteStep(Step step)
