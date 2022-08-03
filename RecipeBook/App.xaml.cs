@@ -8,6 +8,8 @@ namespace RecipeBook
 {
     public partial class App : Application
     {
+        public static string FilesFolderPath => Environment.GetFolderPath(Environment.SpecialFolder.Personal);
+
 
         public App()
         {
@@ -22,10 +24,12 @@ namespace RecipeBook
 
         protected override void OnSleep()
         {
+            DataStore.SaveData();
         }
 
         protected override void OnResume()
         {
         }
+
     }
 }

@@ -1,45 +1,79 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:RecipeBook.Extensions;assembly=RecipeBook"
              x:Class="RecipeBook.Views.RecipePage"
-             Title="Детали рецепта"
-             BackgroundColor="LightYellow">
+             Title="Детали рецепта">
 
     <ContentPage.ToolbarItems>
-        <ToolbarItem Clicked="OnEditButtonClicked"
-                     Text="Edit"/>
+        <ToolbarItem IconImageSource="{local:ImageResource RecipeBook.Images.Icons.EditIcon.png}"
+                     Clicked="OnEditButtonClicked"/>
     </ContentPage.ToolbarItems>
 
     <ContentPage.Content>
         <StackLayout>
             <CollectionView ItemsSource="{Binding Steps}">
                 <CollectionView.ItemsLayout>
-                    <LinearItemsLayout ItemSpacing="20" 
-                                       Orientation="Vertical"/>
+                    <LinearItemsLayout Orientation="Vertical"/>
                 </CollectionView.ItemsLayout>
 
                 <CollectionView.Header>
                     <StackLayout>
-                        <Label Text="Страница рецепта"/>
-                        <Image Source="{Binding ImageSource}"/>
-                        <Label Text="{Binding Title}"/>
-                        <Editor Text="{Binding Description}"
-                                IsReadOnly="True"/>
+                        <Image Source="{Binding ImageSource}"
+                               Aspect="AspectFill"
+                               HeightRequest="300"/>
+                        <StackLayout Padding="10, 10">
+                            <Label Text="{Binding Title}"
+                                   FontSize="Large"
+                                   TextColor="Black"/>
+                            <Label Text="{Binding Description}"
+                                   FontSize="Medium"/>
+                            <Label Text="Ингридиенты"
+                                   FontSize="Large"
+                                   TextColor="Black"/>
+                            <Label Text="{Binding Ingredients}"
+                                   FontSize="Medium"/>
+                            <Label Text="Шаги"
+                                   FontSize="Large"
+                                   TextColor="Black"/>
+                            <BoxView BackgroundColor="Black"
+                                     HorizontalOptions="FillAndExpand"
+                                     HeightRequest="2"/>
+                        </StackLayout>
                     </StackLayout>
                 </CollectionView.Header>
 
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
-                        <StackLayout BackgroundColor="Orange">
-                            <Image Source="{Binding ImageSource}" 
-                                   Aspect="AspectFill"
-                                   HeightRequest="200"/>
-                            <Label Text="{Binding Description}" 
-                                   FontSize="Medium"
-                                   />
-                        </StackLayout>
+                        <Frame Padding="15, 15">
+                            <Frame CornerRadius="15"
+                                   BorderColor="Gray"
+                                   HasShadow="True"
+                                   Padding="0">
+                                <StackLayout>
+                                    <Image Source="{Binding ImageSource}" 
+                                           Aspect="AspectFill"
+                                           HeightRequest="200"/>
+                                    <Label Text="{Binding Description}" 
+                                           FontSize="Medium"
+                                           Margin="10"/>
+                                </StackLayout>
+                            </Frame>
+                        </Frame>
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
+
+                <CollectionView.Footer>
+                    <StackLayout Padding="10, 10">
+                        <BoxView BackgroundColor="Black"
+                                     HorizontalOptions="FillAndExpand"
+                                     HeightRequest="2"/>
+                        <Label Text="Приятного аппетита!"
+                               FontSize="Large"
+                               HorizontalTextAlignment="Center"
+                               TextColor="Black"/>
+                    </StackLayout>
+                </CollectionView.Footer>
 
             </CollectionView>
         </StackLayout>

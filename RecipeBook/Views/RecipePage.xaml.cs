@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using RecipeBook.Data;
+using System.Windows.Input;
 
 namespace RecipeBook.Views
 {
@@ -19,7 +20,7 @@ namespace RecipeBook.Views
         {
             set
             {
-                currentRecipe = DataStore.Source.GetRecipeById(int.Parse(value));
+                currentRecipe = DataStore.GetRecipeById(int.Parse(value));
                 BindingContext = currentRecipe;
             }
         }

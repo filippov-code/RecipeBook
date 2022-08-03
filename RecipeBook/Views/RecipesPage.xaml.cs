@@ -15,12 +15,11 @@ namespace RecipeBook.Views
     {
         public ObservableCollection<Recipe> Recipes { get; set; }
 
-
         public RecipesPage()
         {
             InitializeComponent();
-
-            Recipes = DataStore.Source.GetAllRecipes();
+            
+            Recipes = DataStore.GetAllRecipes();
 
             BindingContext = this;
         }

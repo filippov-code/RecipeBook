@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
@@ -12,13 +12,29 @@
 
   <ItemGroup>
     <None Remove="Images\DefaultImage.png" />
+    <None Remove="Images\EditIcon.jpg" />
+    <None Remove="Images\EditIcon.png" />
+    <None Remove="Images\FillFavoriteImage.png" />
+    <None Remove="Images\flyout_header_image.png" />
+    <None Remove="Images\Icons\AddIcon.png" />
+    <None Remove="Images\Icons\DeleteIcon.png" />
+    <None Remove="Images\Icons\SaveIcon.png" />
+    <None Remove="Images\UnfillFavoriteImage.png" />
   </ItemGroup>
 
   <ItemGroup>
     <EmbeddedResource Include="Images\DefaultImage.png" />
+    <EmbeddedResource Include="Images\flyout_header_image.png" />
+    <EmbeddedResource Include="Images\Icons\AddIcon.png" />
+    <EmbeddedResource Include="Images\Icons\DeleteIcon.png" />
+    <EmbeddedResource Include="Images\Icons\EditIcon.png" />
+    <EmbeddedResource Include="Images\FillFavoriteImage.png" />
+    <EmbeddedResource Include="Images\Icons\SaveIcon.png" />
+    <EmbeddedResource Include="Images\UnfillFavoriteImage.png" />
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="sqlite-net-pcl" Version="1.8.116" />
     <PackageReference Include="Xamarin.Forms" Version="5.0.0.2196" />
     <PackageReference Include="Xamarin.Essentials" Version="1.7.0" />
   </ItemGroup>

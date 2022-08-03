@@ -13,19 +13,32 @@ namespace RecipeBook.Models
 
         public int ID { get; set; }
 
-        private string image;
-        public string Image 
+        private string loadedImagePath;
+        public string LoadedImagePath 
         {
-            get => image; 
+            get => loadedImagePath; 
             set
             {
-                image = value;
+                loadedImagePath = value;
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Image)));
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(ImageSource)));
             }
         }
 
-        public ImageSource ImageSource => string.IsNullOrEmpty(image) ? ImageStorage.DefaultImage : image;
+        public ImageSource ImageSource
+        {
+            get
+            {
+                if (!string.IsNullOrEmpty(loadedImagePath))
+                    return loadedImagePath;
+
+                string savedImagePath = ImageStorage.GetImagePathForStep(ID);
+                if (string.IsNullOrEmpty(savedImagePath))
+                    return ImageStorage.DefaultImage;
+                else
+                    return savedImagePath;
+            }
+        }
 
         public string Description { get; set; }
 
@@ -39,8 +52,17 @@ namespace RecipeBook.Models
         public Step(Step stepToCopy)
         {
             ID = stepToCopy.ID;
-            Image = stepToCopy.Image;
+            LoadedImagePath = stepToCopy.LoadedImagePath;
             Description = stepToCopy.Description;
+        }
+
+        public StepData GetStepData()
+        {
+            return new StepData
+            {
+                ID = this.ID,
+                Description = this.Description
+            };
         }
     }
 }

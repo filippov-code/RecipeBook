@@ -47,6 +47,8 @@ namespace RecipeBook
 
         public string Description { get; set; }
 
+        public string Ingredients { get; set; }
+
         public ObservableCollection<Step> Steps { get; set; } = new ObservableCollection<Step>();
 
 
@@ -55,6 +57,7 @@ namespace RecipeBook
             ID = 0;
             Title = "Название";
             Description = "Описание";
+            Ingredients = "Ингредиенты";
             Steps = new ObservableCollection<Step>() { new Step() };
         }
 
@@ -64,8 +67,20 @@ namespace RecipeBook
             LoadedImagePath = recipeToCopy.LoadedImagePath;
             Title = recipeToCopy.Title;
             Description = recipeToCopy.Description;
+            Ingredients = recipeToCopy.Ingredients;
             Steps = new ObservableCollection<Step>(recipeToCopy.Steps.Select(x => new Step(x)));
         }
 
+        public RecipeData GetRecipeData()
+        {
+            return new RecipeData
+            {
+                ID = this.ID,
+                Title = this.Title,
+                Description = this.Description,
+                Ingredients = this.Ingredients,
+                StepsID = string.Join(",", Steps.Select(x => x.ID.ToString()))
+            };
+        }
     }
 }

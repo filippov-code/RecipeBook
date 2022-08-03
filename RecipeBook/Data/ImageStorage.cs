@@ -17,10 +17,14 @@ namespace RecipeBook.Data
 
         public static ImageSource DefaultImage => ImageSource.FromResource("RecipeBook.Images.DefaultImage.png");
 
+        public static ImageSource FillFavoriteImage => ImageSource.FromResource("RecipeBook.Images.FillFavoriteImage.png");
+
+        public static ImageSource UnfillFavoriteImage => ImageSource.FromResource("RecipeBook.Images.UnfillFavoriteImage.png");
+
 
         static ImageStorage()
         {
-            string filesFolderPath = Environment.GetFolderPath(Environment.SpecialFolder.Personal);
+            string filesFolderPath = App.FilesFolderPath;
             imagesFolderPath = Path.Combine(filesFolderPath, loadedImagesFolderName);
 
             if (!Directory.Exists(imagesFolderPath))
@@ -37,7 +41,6 @@ namespace RecipeBook.Data
 
         private async static void SaveImageByNameAsync(string imageName, string imagePath)
         {
-
             if (!File.Exists(imagePath)) throw new Exception("Путь изображения для сохранения не найден");
 
             string savedImagePath = Path.Combine(imagesFolderPath, imageName + imageFormat);

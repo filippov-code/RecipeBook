@@ -8,13 +8,9 @@ namespace RecipeBook.Data
 {
     public interface IDataSource
     {
-        ObservableCollection<Recipe> GetAllRecipes();
-        ObservableCollection<Step> GetStepsById(int recipeId);
-        Recipe GetRecipeById(int id);
-        Step GetStepById(int id);
-        void AddOrUpdateRecipe(Recipe recipe);
-        //void AddOrUpdateStepsFromRecipe(Recipe recipe);
-        void DeleteRecipeById(int id);
-        //void DeleteStepFromRecipeById(int recipeId, int stepId);
+        //IDataSource Singletone { get; }
+        List<Recipe> GetRecipes();
+        List<Step> GetSteps();
+        void Save(List<Recipe> recipes, List<Step> steps);
     }
 }

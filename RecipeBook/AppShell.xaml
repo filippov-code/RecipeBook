@@ -1,12 +1,42 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <Shell xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:RecipeBook.Extensions;assembly=RecipeBook"
              xmlns:views="clr-namespace:RecipeBook.Views"
-             x:Class="RecipeBook.AppShell">
+             x:Class="RecipeBook.AppShell"
+       BackgroundColor="#fdd835">
+
+    <Shell.FlyoutHeader>
+        <StackLayout>
+            <Image Source="{local:ImageResource RecipeBook.Images.flyout_header_image.png}"
+                   HeightRequest="200"
+                   Aspect="AspectFill"/>
+            <Label Text="Recipe Book"
+                   TextColor="Black"
+                   FontSize="Large"
+                   HorizontalOptions="Center"/>
+            <BoxView Color="LightGray"
+                     HorizontalOptions="FillAndExpand"
+                     HeightRequest="2"/>
+        </StackLayout>
+    </Shell.FlyoutHeader>
 
     <FlyoutItem Title="Рецепты">
         <Tab>
             <ShellContent ContentTemplate="{DataTemplate views:RecipesPage}"/>
         </Tab>
     </FlyoutItem>
+
+    <Shell.FlyoutFooter>
+        <StackLayout>
+            <BoxView Color="LightGray"
+                     HorizontalOptions="FillAndExpand"
+                     HeightRequest="2"/>
+            <Label Text="v 1.0.0"
+                   HorizontalOptions="Center"
+                   FontSize="Medium"/>
+            <Label Text="github/*"
+               HorizontalOptions="Center"/>
+        </StackLayout>
+    </Shell.FlyoutFooter>
 </Shell>

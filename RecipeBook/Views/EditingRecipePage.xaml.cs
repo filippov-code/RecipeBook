@@ -23,7 +23,7 @@ namespace RecipeBook.Views
         {
             set
             {
-                editingRecipe = DataStore.Source.GetRecipeById(int.Parse(value)) ?? new Recipe();
+                editingRecipe = DataStore.GetRecipeById(int.Parse(value)) ?? new Recipe();
 
                 if (editingRecipe.ID == 0)
                 {
@@ -42,7 +42,8 @@ namespace RecipeBook.Views
 
         private async void OnSaveButtonClicked(object sender, EventArgs e)
         {
-            DataStore.Source.AddOrUpdateRecipe(editingRecipe);
+            DataStore.AddOrUpdateRecipe(editingRecipe);
+            DataStore.SaveData();
 
             await Shell.Current.GoToAsync($"..?{nameof(RecipePage.SetRecipeByIdString)}={editingRecipe.ID}");
         }
@@ -50,14 +51,23 @@ namespace RecipeBook.Views
 
         private async void OnChangeRecipeImageButtonClicked(object sender, EventArgs e)
         {
-            var photo = await MediaPicker.PickPhotoAsync();
+            string pickPhotoMethod = await DisplayActionSheet("Сменить фото", "Отмена", null, "Сделать фото", "Выбрать фото");
+            FileResult photo = null;
+            switch (pickPhotoMethod)
+            {
+                case "Сделать фото":
+                    photo = await MediaPicker.CapturePhotoAsync();
+                    break;
+                case "Выбрать фото":
+                    photo = await MediaPicker.PickPhotoAsync();
+                    break;
+                default:
+                    return;
+            }
+
             if (photo != null)
             {
                 editingRecipe.LoadedImagePath = photo.FullPath;
-            }
-            else
-            {
-                await DisplayAlert("Упс", "Фото не выбрано", "Понятно");
             }
         }
 
@@ -66,14 +76,23 @@ namespace RecipeBook.Views
             var button = (Button)sender;
             Step step = (Step)button.CommandParameter;
 
-            var photo = await MediaPicker.PickPhotoAsync();
+            string pickPhotoMethod = await DisplayActionSheet("Сменить фото", "Отмена", null, "Сделать фото", "Выбрать фото");
+            FileResult photo = null;
+            switch (pickPhotoMethod)
+            {
+                case "Сделать фото":
+                    photo = await MediaPicker.CapturePhotoAsync();
+                    break;
+                case "Выбрать фото":
+                    photo = await MediaPicker.PickPhotoAsync();
+                    break;
+                default:
+                    return;
+            }
+
             if (photo != null)
             {
-                step.Image = photo.FullPath;
-            }
-            else
-            {
-                await DisplayAlert("Упс", "Фото не выбрано", "Понятно");
+                step.LoadedImagePath = photo.FullPath;
             }
         }
 
@@ -82,7 +101,7 @@ namespace RecipeBook.Views
             bool accept = await DisplayAlert("Удаление", "Вы уверены?", "Удалить", "Отменить");
             if (!accept) return;
 
-            DataStore.Source.DeleteRecipeById(editingRecipe.ID);
+            DataStore.DeleteRecipeById(editingRecipe.ID);
 
             await Shell.Current.GoToAsync("../..");
         }

@@ -1,13 +1,14 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:RecipeBook.Extensions;assembly=RecipeBook"
              x:Class="RecipeBook.Views.EditingRecipePage"
              Title="Редактирование рецепта">
 
     <ContentPage.ToolbarItems>
-        <ToolbarItem Text="DELETE" 
+        <ToolbarItem IconImageSource="{local:ImageResource RecipeBook.Images.Icons.DeleteIcon.png}" 
                      Clicked="OnDeleteRecipeButtonClicked"/>
-        <ToolbarItem Text="SAVE" 
+        <ToolbarItem IconImageSource="{local:ImageResource RecipeBook.Images.Icons.SaveIcon.png}" 
                      Clicked="OnSaveButtonClicked"/>
     </ContentPage.ToolbarItems>
     
@@ -17,44 +18,81 @@
             <CollectionView ItemsSource="{Binding Steps}">
 
                 <CollectionView.ItemsLayout>
-                    <LinearItemsLayout ItemSpacing="20" 
-                                       Orientation="Vertical"/>
+                    <LinearItemsLayout Orientation="Vertical"/>
                 </CollectionView.ItemsLayout>
 
                 <CollectionView.Header>
                     <StackLayout>
-                        <Label Text="{Binding ID}"/>
-                        <Image Source="{Binding ImageSource}"/>
-                        <Button Text="Сменить картинку"
-                                Clicked="OnChangeRecipeImageButtonClicked"/>
-                        <Entry Text="{Binding Title}"/>
-                        <Editor Text="{Binding Description}"/>
+                        <!--<Label Text="{Binding ID}"/>-->
+                        <Image Source="{Binding ImageSource}"
+                               Aspect="AspectFill"
+                               HeightRequest="300"/>
+                        <Button Text="Сменить фото"
+                                Clicked="OnChangeRecipeImageButtonClicked"
+                                Margin="5, 5"
+                                CornerRadius="10"/>
+                        <StackLayout Padding="5, 5">
+                            <Entry Text="{Binding Title}"
+                                   FontSize="Medium"/>
+                            <Editor Text="{Binding Description}"
+                                    AutoSize="TextChanges"
+                                    FontSize="Medium"/>
+                            <Editor Text="{Binding Ingredients}"
+                                    AutoSize="TextChanges"
+                                    FontSize="Medium"/>
+                        </StackLayout>
+                        <StackLayout Padding="10, 10">
+                            <Label Text="Шаги"
+                                   TextColor="Black"
+                                   FontSize="Large"/>
+                            <BoxView BackgroundColor="Black"
+                                     HorizontalOptions="FillAndExpand"
+                                     HeightRequest="2"/>
+                        </StackLayout>
                     </StackLayout>
                 </CollectionView.Header>
 
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
-                        <StackLayout BackgroundColor="Orange">
-                            <Label Text="{Binding ID}"/>
-                            <Image Source="{Binding ImageSource}" 
-                                   Aspect="AspectFill"
-                                   HeightRequest="200"/>
-                            <Button Text="Сменить фото"
-                                    Clicked="OnChangeStepImageButtonClicked"
-                                    CommandParameter="{Binding .}"/>
-                            <Editor Text="{Binding Description}" 
-                                    FontSize="Medium"
-                                    AutoSize="TextChanges"/>
-                            <Button Text="Удалить"
-                                    Clicked="OnDeleteStepButtonClicked"
-                                    CommandParameter="{Binding .}"/>
-                        </StackLayout>
+                        <Frame Padding="10, 10">
+                            <Frame CornerRadius="15"
+                                   BorderColor="Gray"
+                                   HasShadow="True"
+                                   Padding="0">
+                                <StackLayout>
+                                <!--<Label Text="{Binding ID}"/>-->
+                                <Image Source="{Binding ImageSource}" 
+                                       Aspect="AspectFill"
+                                       HeightRequest="200"/>
+                                <Button Text="Сменить фото"
+                                        Clicked="OnChangeStepImageButtonClicked"
+                                        CommandParameter="{Binding .}"
+                                        CornerRadius="10"
+                                        Margin="5"
+                                        HeightRequest="40"/>
+                                <Editor Text="{Binding Description}" 
+                                        FontSize="Medium"
+                                        Margin="5, 5"
+                                        AutoSize="TextChanges"/>
+                                <Button Text="Удалить"
+                                        Clicked="OnDeleteStepButtonClicked"
+                                        CommandParameter="{Binding .}"
+                                        CornerRadius="10"
+                                        BackgroundColor="#ff4d4d"
+                                        TextColor="White"
+                                        HeightRequest="40"/>
+                                </StackLayout>
+                            </Frame>
+                        </Frame>
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
 
                 <CollectionView.Footer>
-                    <Button Text="Добавить шаг"
-                            Clicked="OnAddStepButtonClicked"/>
+                    <StackLayout Padding="5">
+                        <Button Text="Добавить шаг"
+                                Clicked="OnAddStepButtonClicked"
+                                CornerRadius="10"/>
+                    </StackLayout>
                 </CollectionView.Footer>
 
             </CollectionView>
