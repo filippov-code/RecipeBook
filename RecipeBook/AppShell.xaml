@@ -35,7 +35,7 @@
             <Label Text="v 1.0.0"
                    HorizontalOptions="Center"
                    FontSize="Medium"/>
-            <Label Text="github/*"
+            <Label Text="github/filippov-code"
                HorizontalOptions="Center"/>
         </StackLayout>
     </Shell.FlyoutFooter>
