@@ -71,6 +71,15 @@ namespace RecipeBook
             Steps = new ObservableCollection<Step>(recipeToCopy.Steps.Select(x => new Step(x)));
         }
 
+        public Recipe(RecipeData recipeData)
+        {
+            ID = recipeData.ID;
+            Title = recipeData.Title;
+            Description = recipeData.Description;
+            Ingredients = recipeData.Ingredients;
+            Steps = new ObservableCollection<Step>();
+        }
+
         public RecipeData GetRecipeData()
         {
             return new RecipeData

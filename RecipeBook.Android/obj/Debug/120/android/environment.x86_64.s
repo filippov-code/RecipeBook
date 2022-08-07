@@ -2,8 +2,8 @@
 	.section	.rodata.env.str.1,"aMS",@progbits,1
 	.type	.L.env.str.1, @object
 .L.env.str.1:
-	.asciz	"com.companyname.recipebook"
-	.size	.L.env.str.1, 27
+	.asciz	"com.GradientDirection.recipebook"
+	.size	.L.env.str.1, 33
 	.section	.data.application_config,"aw",@progbits
 	.type	application_config, @object
 	.p2align	3
@@ -84,7 +84,7 @@ mono_aot_mode_name:
 	.section	.rodata.env.str.8,"aMS",@progbits,1
 	.type	.L.env.str.8, @object
 .L.env.str.8:
-	.asciz	"58a8dcb9-e2f7-4552-bc28-b3a0ef79371f"
+	.asciz	"70685b53-cb36-49ba-8bcb-9f42da30c2eb"
 	.size	.L.env.str.8, 37
 	.section	.rodata.env.str.9,"aMS",@progbits,1
 	.type	.L.env.str.9, @object

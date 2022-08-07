@@ -32,7 +32,7 @@
             <BoxView Color="LightGray"
                      HorizontalOptions="FillAndExpand"
                      HeightRequest="2"/>
-            <Label Text="v 1.0.0"
+            <Label Text="v 1.0.1"
                    HorizontalOptions="Center"
                    FontSize="Medium"/>
             <Label Text="github/filippov-code"

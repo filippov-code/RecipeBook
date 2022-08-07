@@ -1,0 +1,48 @@
+@string/appbar_scrolling_view_behavior;F:\Programs\Visual Studio Projects\RecipeBook\RecipeBook.Android\obj\Release\120\lp\55\jl\res\layout\rootlayout.xml
+adaptive-icon;obj\Release\120\res\mipmap-anydpi-v26\icon.xml
+alpha;F:\Programs\Visual Studio Projects\RecipeBook\RecipeBook.Android\obj\Release\120\lp\55\jl\res\anim\enterfromleft.xml
+alpha;F:\Programs\Visual Studio Projects\RecipeBook\RecipeBook.Android\obj\Release\120\lp\55\jl\res\anim\exittoleft.xml
+androidx.appcompat.widget.Toolbar;F:\Programs\Visual Studio Projects\RecipeBook\RecipeBook.Android\obj\Release\120\lp\55\jl\res\layout\fallbacktoolbardonotuse.xml
+androidx.appcompat.widget.Toolbar;F:\Programs\Visual Studio Projects\RecipeBook\RecipeBook.Android\obj\Release\120\lp\55\jl\res\layout\rootlayout.xml
+androidx.appcompat.widget.Toolbar;F:\Programs\Visual Studio Projects\RecipeBook\RecipeBook.Android\obj\Release\120\lp\55\jl\res\layout\shellcontent.xml
+androidx.appcompat.widget.Toolbar;F:\Programs\Visual Studio Projects\RecipeBook\RecipeBook.Android\obj\Release\120\lp\55\jl\res\layout\toolbar.xml
+androidx.coordinatorlayout.widget.CoordinatorLayout;F:\Programs\Visual Studio Projects\RecipeBook\RecipeBook.Android\obj\Release\120\lp\55\jl\res\layout\rootlayout.xml
+androidx.coordinatorlayout.widget.CoordinatorLayout;F:\Programs\Visual Studio Projects\RecipeBook\RecipeBook.Android\obj\Release\120\lp\55\jl\res\layout\shellcontent.xml
+attr;F:\Programs\Visual Studio Projects\RecipeBook\RecipeBook.Android\obj\Release\120\lp\55\jl\res\values\attrs.xml
+background;obj\Release\120\res\mipmap-anydpi-v26\icon.xml
+cache-path;F:\Programs\Visual Studio Projects\RecipeBook\RecipeBook.Android\obj\Release\120\lp\54\jl\res\xml\xamarin_essentials_fileprovider_file_paths.xml
+color;obj\Release\120\res\values\colors.xml
+com.google.android.material.appbar.AppBarLayout;F:\Programs\Visual Studio Projects\RecipeBook\RecipeBook.Android\obj\Release\120\lp\55\jl\res\layout\flyoutcontent.xml
+com.google.android.material.appbar.AppBarLayout;F:\Programs\Visual Studio Projects\RecipeBook\RecipeBook.Android\obj\Release\120\lp\55\jl\res\layout\rootlayout.xml
+com.google.android.material.appbar.AppBarLayout;F:\Programs\Visual Studio Projects\RecipeBook\RecipeBook.Android\obj\Release\120\lp\55\jl\res\layout\shellcontent.xml
+com.google.android.material.bottomnavigation.BottomNavigationView;F:\Programs\Visual Studio Projects\RecipeBook\RecipeBook.Android\obj\Release\120\lp\55\jl\res\layout\bottomtablayout.xml
+com.google.android.material.tabs.TabLayout;F:\Programs\Visual Studio Projects\RecipeBook\RecipeBook.Android\obj\Release\120\lp\55\jl\res\layout\fallbacktabbardonotuse.xml
+com.google.android.material.tabs.TabLayout;F:\Programs\Visual Studio Projects\RecipeBook\RecipeBook.Android\obj\Release\120\lp\55\jl\res\layout\rootlayout.xml
+com.google.android.material.tabs.TabLayout;F:\Programs\Visual Studio Projects\RecipeBook\RecipeBook.Android\obj\Release\120\lp\55\jl\res\layout\tabbar.xml
+declare-styleable;F:\Programs\Visual Studio Projects\RecipeBook\RecipeBook.Android\obj\Release\120\lp\55\jl\res\values\attrs.xml
+external-cache-path;F:\Programs\Visual Studio Projects\RecipeBook\RecipeBook.Android\obj\Release\120\lp\54\jl\res\xml\xamarin_essentials_fileprovider_file_paths.xml
+external-path;F:\Programs\Visual Studio Projects\RecipeBook\RecipeBook.Android\obj\Release\120\lp\54\jl\res\xml\xamarin_essentials_fileprovider_file_paths.xml
+foreground;obj\Release\120\res\mipmap-anydpi-v26\icon.xml
+FrameLayout;F:\Programs\Visual Studio Projects\RecipeBook\RecipeBook.Android\obj\Release\120\lp\55\jl\res\layout\bottomtablayout.xml
+item;F:\Programs\Visual Studio Projects\RecipeBook\RecipeBook.Android\obj\Release\120\lp\55\jl\res\values\styles.xml
+item;obj\Release\120\res\values\styles.xml
+LinearLayout;F:\Programs\Visual Studio Projects\RecipeBook\RecipeBook.Android\obj\Release\120\lp\55\jl\res\layout\bottomtablayout.xml
+paths;F:\Programs\Visual Studio Projects\RecipeBook\RecipeBook.Android\obj\Release\120\lp\54\jl\res\xml\xamarin_essentials_fileprovider_file_paths.xml
+resources;F:\Programs\Visual Studio Projects\RecipeBook\RecipeBook.Android\obj\Release\120\lp\55\jl\res\values\attrs.xml
+resources;F:\Programs\Visual Studio Projects\RecipeBook\RecipeBook.Android\obj\Release\120\lp\55\jl\res\values\strings.xml
+resources;F:\Programs\Visual Studio Projects\RecipeBook\RecipeBook.Android\obj\Release\120\lp\55\jl\res\values\styles.xml
+resources;obj\Release\120\res\values\colors.xml
+resources;obj\Release\120\res\values\styles.xml
+set;F:\Programs\Visual Studio Projects\RecipeBook\RecipeBook.Android\obj\Release\120\lp\55\jl\res\anim\enterfromleft.xml
+set;F:\Programs\Visual Studio Projects\RecipeBook\RecipeBook.Android\obj\Release\120\lp\55\jl\res\anim\enterfromright.xml
+set;F:\Programs\Visual Studio Projects\RecipeBook\RecipeBook.Android\obj\Release\120\lp\55\jl\res\anim\exittoleft.xml
+set;F:\Programs\Visual Studio Projects\RecipeBook\RecipeBook.Android\obj\Release\120\lp\55\jl\res\anim\exittoright.xml
+string;F:\Programs\Visual Studio Projects\RecipeBook\RecipeBook.Android\obj\Release\120\lp\55\jl\res\values\strings.xml
+style;F:\Programs\Visual Studio Projects\RecipeBook\RecipeBook.Android\obj\Release\120\lp\55\jl\res\values\styles.xml
+style;obj\Release\120\res\values\styles.xml
+translate;F:\Programs\Visual Studio Projects\RecipeBook\RecipeBook.Android\obj\Release\120\lp\55\jl\res\anim\enterfromleft.xml
+translate;F:\Programs\Visual Studio Projects\RecipeBook\RecipeBook.Android\obj\Release\120\lp\55\jl\res\anim\enterfromright.xml
+translate;F:\Programs\Visual Studio Projects\RecipeBook\RecipeBook.Android\obj\Release\120\lp\55\jl\res\anim\exittoleft.xml
+translate;F:\Programs\Visual Studio Projects\RecipeBook\RecipeBook.Android\obj\Release\120\lp\55\jl\res\anim\exittoright.xml
+xamarin.forms.platform.android.appcompat.FormsViewPager;F:\Programs\Visual Studio Projects\RecipeBook\RecipeBook.Android\obj\Release\120\lp\55\jl\res\layout\rootlayout.xml
+xamarin.forms.platform.android.ShellFlyoutLayout;F:\Programs\Visual Studio Projects\RecipeBook\RecipeBook.Android\obj\Release\120\lp\55\jl\res\layout\flyoutcontent.xml

@@ -45,12 +45,7 @@ namespace RecipeBook.Data
             List<RecipeData> recipesData = GetRecipesData();
             foreach (RecipeData recipeData in recipesData)
             {
-                Recipe recipe = new Recipe
-                {
-                    ID = recipeData.ID,
-                    Title = recipeData.Title,
-                    Description = recipeData.Description
-                };
+                Recipe recipe = new Recipe(recipeData);
 
                 try
                 {

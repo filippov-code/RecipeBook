@@ -118,7 +118,7 @@ namespace RecipeBook.Data
             return lastStep == null ? 1 : lastStep.ID + 1;
         }
 
-        private static int GetNextId(Collection<int> collection)
+        private static int GetNextId(Collection<int> collection) 
         {
             if (collection.Count == 0) return 1;
 

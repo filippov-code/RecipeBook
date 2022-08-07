@@ -28,7 +28,7 @@
                                    TextColor="Black"/>
                             <Label Text="{Binding Description}"
                                    FontSize="Medium"/>
-                            <Label Text="Ингридиенты"
+                            <Label Text="Ингредиенты"
                                    FontSize="Large"
                                    TextColor="Black"/>
                             <Label Text="{Binding Ingredients}"
