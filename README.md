@@ -16,15 +16,15 @@
 
 ## Скриншоты
 ### Главная страница
-![](https://github.com/filippov-code/ImagesForREADME/blob/main/RecipeBook/Screenshot_20220804-220339.jpg)
-![](https://github.com/filippov-code/ImagesForREADME/blob/main/RecipeBook/Screenshot_20220804-220544.jpg)
+![](https://github.com/filippov-code/RecipeBook/blob/master/screenshots/1.jpg)
+![](https://github.com/filippov-code/RecipeBook/blob/master/screenshots/2.jpg)
 ### Страница рецепта
-![](https://github.com/filippov-code/ImagesForREADME/blob/main/RecipeBook/Screenshot_20220804-220349.jpg)
-![](https://github.com/filippov-code/ImagesForREADME/blob/main/RecipeBook/Screenshot_20220804-220356.jpg)
+![](https://github.com/filippov-code/RecipeBook/blob/master/screenshots/3.jpg)
+![](https://github.com/filippov-code/RecipeBook/blob/master/screenshots/4.jpg)
 ### Страница редактирования рецепта
-![](https://github.com/filippov-code/ImagesForREADME/blob/main/RecipeBook/Screenshot_20220804-220422.jpg)
-![](https://github.com/filippov-code/ImagesForREADME/blob/main/RecipeBook/Screenshot_20220804-220435.jpg)
-![](https://github.com/filippov-code/ImagesForREADME/blob/main/RecipeBook/Screenshot_20220804-220446.jpg)
+![](https://github.com/filippov-code/RecipeBook/blob/master/screenshots/5.jpg)
+![](https://github.com/filippov-code/RecipeBook/blob/master/screenshots/6.jpg)
+![](https://github.com/filippov-code/RecipeBook/blob/master/screenshots/7.jpg)
 ### Страница добавления нового рецепта
-![](https://github.com/filippov-code/ImagesForREADME/blob/main/RecipeBook/Screenshot_20220804-220459.jpg)
-![](https://github.com/filippov-code/ImagesForREADME/blob/main/RecipeBook/Screenshot_20220804-220537.jpg)
+![](https://github.com/filippov-code/RecipeBook/blob/master/screenshots/8.jpg)
+![](https://github.com/filippov-code/RecipeBook/blob/master/screenshots/9.jpg)
